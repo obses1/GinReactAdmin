@@ -2,24 +2,19 @@ import { useRef, useEffect, useState } from 'react'
 
 /**
  * 数字缓出计数动画 Hook
- * @param target 目标数值
- * @param duration 动画时长(ms)
- * @param prefix 前缀 (如 "¥")
- * @param suffix 后缀 (如 "人")
  */
 export function useCountUp(target: number, duration = 1800, prefix = '', suffix = '') {
   const [display, setDisplay] = useState('0')
   const frameRef = useRef<number>(0)
-  const hasAnimated = useRef(false)
 
   useEffect(() => {
-    if (hasAnimated.current) return
-    hasAnimated.current = true
-
     const start = 0
     const startTime = performance.now()
+    // 用局部变量替代 ref，避免 StrictMode 双挂载问题
+    let done = false
 
     const update = (now: number) => {
+      if (done) return
       const progress = Math.min((now - startTime) / duration, 1)
       const eased = 1 - Math.pow(2, -10 * progress)
       const current = start + (target - start) * eased
@@ -34,11 +29,15 @@ export function useCountUp(target: number, duration = 1800, prefix = '', suffix 
         frameRef.current = requestAnimationFrame(update)
       } else {
         setDisplay(`${prefix}${target.toLocaleString()}${suffix}`)
+        done = true
       }
     }
 
     frameRef.current = requestAnimationFrame(update)
-    return () => cancelAnimationFrame(frameRef.current)
+    return () => {
+      done = true
+      cancelAnimationFrame(frameRef.current)
+    }
   }, [target, duration, prefix, suffix])
 
   return display
