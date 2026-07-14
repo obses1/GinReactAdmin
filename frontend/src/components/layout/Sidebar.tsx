@@ -75,7 +75,7 @@ export function Sidebar({
         theme="dark" mode="inline"
         selectedKeys={selectedKeys}
         defaultSelectedKeys={['dashboard']}
-        onClick={({ key }) => onCollapse(collapsed)}
+        onClick={({ key }) => selectedKeys && onCollapse(collapsed)}
         items={menuItems}
         style={{ background: 'transparent', borderRight: 0, marginTop: 8, padding: '0 4px' }}
       />
