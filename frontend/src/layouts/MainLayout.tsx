@@ -1,5 +1,6 @@
+
 import { useState } from 'react'
-import { Layout, Menu, Avatar, Dropdown, Badge, theme } from 'antd'
+import { Layout, Menu, Avatar, Dropdown, Badge } from 'antd'
 import {
   DashboardOutlined,
   ShoppingCartOutlined,
@@ -20,46 +21,14 @@ import type { MenuProps } from 'antd'
 const { Header, Sider, Content } = Layout
 
 const menuItems: MenuProps['items'] = [
-  {
-    key: 'dashboard',
-    icon: <DashboardOutlined />,
-    label: '控制台',
-  },
-  {
-    key: 'orders',
-    icon: <ShoppingCartOutlined />,
-    label: '订单管理',
-  },
-  {
-    key: 'products',
-    icon: <ShopOutlined />,
-    label: '商品管理',
-  },
-  {
-    key: 'users',
-    icon: <TeamOutlined />,
-    label: '用户管理',
-  },
-  {
-    key: 'analytics',
-    icon: <BarChartOutlined />,
-    label: '数据分析',
-  },
-  {
-    key: 'content',
-    icon: <FileTextOutlined />,
-    label: '内容管理',
-  },
-  {
-    key: 'settings',
-    icon: <SettingOutlined />,
-    label: '系统设置',
-  },
-  {
-    key: 'security',
-    icon: <SafetyOutlined />,
-    label: '安全中心',
-  },
+  { key: 'dashboard', icon: <DashboardOutlined />, label: '控制台' },
+  { key: 'orders', icon: <ShoppingCartOutlined />, label: '订单管理' },
+  { key: 'products', icon: <ShopOutlined />, label: '商品管理' },
+  { key: 'users', icon: <TeamOutlined />, label: '用户管理' },
+  { key: 'analytics', icon: <BarChartOutlined />, label: '数据分析' },
+  { key: 'content', icon: <FileTextOutlined />, label: '内容管理' },
+  { key: 'settings', icon: <SettingOutlined />, label: '系统设置' },
+  { key: 'security', icon: <SafetyOutlined />, label: '安全中心' },
 ]
 
 interface MainLayoutProps {
@@ -69,7 +38,6 @@ interface MainLayoutProps {
 export default function MainLayout({ children }: MainLayoutProps) {
   const [collapsed, setCollapsed] = useState(false)
   const [currentMenu, setCurrentMenu] = useState('dashboard')
-  const { token: themeToken } = theme.useToken()
 
   const userMenuItems: MenuProps['items'] = [
     { key: 'profile', icon: <UserOutlined />, label: '个人中心' },
@@ -80,12 +48,21 @@ export default function MainLayout({ children }: MainLayoutProps) {
 
   return (
     <Layout style={{ height: '100vh', width: '100vw', overflow: 'hidden' }}>
-      {/* ======== 侧边栏 ======== */}
+      {/* ======== 背景浮动光晕粒子 ======== */}
+      <div className="floating-orbs">
+        <div className="floating-orb floating-orb--blue-1" />
+        <div className="floating-orb floating-orb--blue-2" />
+        <div className="floating-orb floating-orb--gold" />
+        <div className="floating-orb floating-orb--white" />
+      </div>
+
+      {/* ======== 侧边栏 — 磨砂玻璃 ======== */}
       <Sider
         trigger={null}
         collapsible
         collapsed={collapsed}
         width={220}
+        className="sidebar-entrance sidebar-glass"
         style={{
           overflow: 'hidden',
           height: '100vh',
@@ -103,10 +80,8 @@ export default function MainLayout({ children }: MainLayoutProps) {
               hsl(221,40%,11%) 0%,
               hsl(221,45%,8%) 30%,
               hsl(221,50%,6%) 65%,
-              hsl(221,65%,4%) 100%
-            )
+              hsl(221,65%,4%) 100%)
           `,
-          boxShadow: '2px 0 12px rgba(0,0,0,0.3)',
           borderRight: 'none',
         }}
       >
@@ -221,21 +196,20 @@ export default function MainLayout({ children }: MainLayoutProps) {
       <Layout
         style={{
           marginLeft: collapsed ? 80 : 220,
-          transition: 'margin-left 0.2s',
+          transition: 'margin-left 0.2s var(--ease-out-expo)',
           height: '100vh',
+          position: 'relative',
         }}
       >
-        {/* 顶部导航 */}
+        {/* 顶部导航 — 磨砂玻璃 */}
         <Header
+          className="topbar-entrance topbar-glass"
           style={{
             height: 60,
-            background: '#fff',
             padding: '0 24px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            boxShadow: '0 2px 8px hsla(221,30%,15%,0.08)',
-            borderBottom: '1px solid hsl(220,15%,88%)',
             position: 'sticky',
             top: 0,
             zIndex: 5,
@@ -254,7 +228,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                 transition: 'all 0.2s',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#f1f5f9'
+                e.currentTarget.style.background = 'rgba(37,99,235,0.08)'
                 e.currentTarget.style.color = '#2563eb'
               }}
               onMouseLeave={(e) => {
@@ -284,18 +258,15 @@ export default function MainLayout({ children }: MainLayoutProps) {
           </div>
         </Header>
 
-        {/* 内容区 */}
+        {/* 内容区 — 深度渐变背景 + 噪点纹理 */}
         <Content
+          className="content-entrance glass-bg-content"
           style={{
             padding: 24,
             overflowY: 'auto',
             overflowX: 'hidden',
             height: 'calc(100vh - 60px)',
-            background: `
-              radial-gradient(ellipse 80% 80% at 85% 85%, hsla(221,30%,4%,0.06) 0%, transparent 70%),
-              radial-gradient(ellipse 70% 70% at 15% 15%, hsla(221,50%,70%,0.04) 0%, transparent 60%),
-              #f0f4f8
-            `,
+            position: 'relative',
           }}
         >
           {children}
