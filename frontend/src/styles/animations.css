@@ -1,0 +1,76 @@
+/* 动画与运动 */
+
+/* 入场 */
+@keyframes fadeInUpScale {
+  from { opacity: 0; transform: translateY(28px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fadeInLeftScale {
+  from { opacity: 0; transform: translateX(-24px) scale(0.97); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes fadeInDownScale {
+  from { opacity: 0; transform: translateY(-16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.stagger-entrance { opacity: 0; animation: fadeInUpScale 0.5s var(--ease-out-expo) forwards; }
+.stagger-entrance:nth-child(1) { animation-delay: 0.00s; }
+.stagger-entrance:nth-child(2) { animation-delay: 0.08s; }
+.stagger-entrance:nth-child(3) { animation-delay: 0.16s; }
+.stagger-entrance:nth-child(4) { animation-delay: 0.24s; }
+.stagger-entrance:nth-child(5) { animation-delay: 0.32s; }
+.stagger-entrance:nth-child(6) { animation-delay: 0.40s; }
+.stagger-entrance:nth-child(7) { animation-delay: 0.48s; }
+.stagger-entrance:nth-child(8) { animation-delay: 0.56s; }
+
+.sidebar-entrance  { animation: fadeInLeftScale  0.45s var(--ease-out-expo) both; }
+.topbar-entrance   { animation: fadeInDownScale  0.45s var(--ease-out-expo) both; }
+.content-entrance  { animation: fadeInUpScale    0.5s var(--ease-out-expo) 0.15s both; }
+
+/* 柱状图 */
+@keyframes barRise {
+  from { transform: scaleY(0); opacity: 0; filter: brightness(0.5); }
+  60%  { transform: scaleY(1.06); opacity: 1; filter: brightness(1.1); }
+  to   { transform: scaleY(1); opacity: 1; filter: brightness(1); }
+}
+
+/* 浮动光晕 */
+@keyframes floatOrb1 {
+  0%,100% { transform: translate(0,0) scale(1); opacity: 0.45; }
+  25%     { transform: translate(50px,-35px) scale(1.05); opacity: 0.65; }
+  50%     { transform: translate(15px,-70px) scale(0.93); opacity: 0.35; }
+  75%     { transform: translate(-35px,-40px) scale(1.08); opacity: 0.55; }
+}
+@keyframes floatOrb2 {
+  0%,100% { transform: translate(0,0) scale(1); opacity: 0.35; }
+  33%     { transform: translate(-55px,-25px) scale(1.1); opacity: 0.55; }
+  66%     { transform: translate(-15px,-60px) scale(0.88); opacity: 0.3; }
+}
+@keyframes floatOrb3 {
+  0%,100% { transform: translate(0,0) scale(1); opacity: 0.25; }
+  50%     { transform: translate(35px,-50px) scale(1.12); opacity: 0.5; }
+}
+
+.floating-orbs { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.floating-orb { position: absolute; border-radius: 50%; filter: blur(60px); }
+.floating-orb--blue-1 {
+  width: 280px; height: 280px; top: -60px; right: -40px;
+  background: radial-gradient(circle, rgba(37,99,235,0.10), transparent 70%);
+  animation: floatOrb1 18s ease-in-out infinite;
+}
+.floating-orb--blue-2 {
+  width: 180px; height: 180px; bottom: 12%; left: -50px;
+  background: radial-gradient(circle, rgba(37,99,235,0.08), transparent 70%);
+  animation: floatOrb2 22s ease-in-out infinite;
+}
+.floating-orb--gold {
+  width: 220px; height: 220px; top: 45%; right: 15%;
+  background: radial-gradient(circle, rgba(201,164,75,0.07), transparent 70%);
+  animation: floatOrb3 20s ease-in-out infinite; filter: blur(70px);
+}
+.floating-orb--white {
+  width: 320px; height: 320px; top: 20%; left: 30%;
+  background: radial-gradient(circle, rgba(255,255,255,0.03), transparent 70%);
+  animation: floatOrb2 24s ease-in-out infinite reverse; filter: blur(80px);
+}

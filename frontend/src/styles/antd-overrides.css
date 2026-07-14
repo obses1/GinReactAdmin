@@ -1,0 +1,15 @@
+/* Ant Design 组件覆盖 */
+
+.ant-menu-dark.ant-menu-inline .ant-menu-item-selected {
+  background:
+    radial-gradient(circle 80px at 28% 30%, hsla(221,70%,60%,0.30) 0%, transparent 70%),
+    linear-gradient(135deg,
+      hsla(221,65%,35%,0.55) 0%, hsla(221,55%,28%,0.55) 50%, hsla(221,40%,18%,0.55) 100%) !important;
+  box-shadow: 0 2px 12px hsla(221,60%,40%,0.25),
+              inset 0 1px 0 hsla(0,0%,100%,0.06) !important;
+}
+.ant-menu-dark.ant-menu-inline .ant-menu-item-selected::after { display: none !important; }
+
+@media (max-width: 768px) {
+  .ant-layout-sider { position: absolute !important; z-index: 100 !important; }
+}

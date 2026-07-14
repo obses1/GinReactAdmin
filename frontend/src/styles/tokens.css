@@ -1,0 +1,50 @@
+/* 设计令牌 (Design Tokens) */
+:root {
+  /* HSL 色相 */
+  --hue-blue: 221; --hue-gold: 42; --hue-red: 5; --hue-cyan: 185; --hue-purple: 255;
+
+  /* 深蓝层次 */
+  --deep-abyss:    hsl(221, 65%, 4%);
+  --deep-midnight: hsl(221, 50%, 6%);
+  --deep-ocean:    hsl(221, 45%, 8%);
+  --deep-twilight: hsl(221, 40%, 11%);
+
+  /* 蓝色阶 */
+  --blue-highlight: hsl(221, 85%, 62%);
+  --blue-primary:   hsl(221, 83%, 53%);
+  --blue-mid:       hsl(221, 75%, 42%);
+  --blue-shadow:    hsl(221, 60%, 28%);
+
+  /* 金色系 */
+  --gold-spot:  hsl(42, 58%, 54%);
+  --gold-glow:  hsl(42, 70%, 68%);
+  --gold-dark:  hsl(42, 40%, 35%);
+
+  /* 中国传统色 */
+  --cinnabar:      hsl(5, 75%, 52%);
+  --cinnabar-lite: hsl(5, 65%, 62%);
+  --qing-primary:  hsl(185, 45%, 48%);
+  --qing-lite:     hsl(185, 40%, 62%);
+
+  /* 表面色 */
+  --surface-page:  hsl(220, 18%, 94%);
+  --surface-card:  hsl(0, 0%, 100%);
+
+  /* 文字 */
+  --text-primary:  hsl(220, 25%, 16%);
+  --text-secondary:hsl(220, 12%, 46%);
+  --border-subtle: hsl(220, 15%, 88%);
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 3px hsla(221,35%,10%,0.06);
+  --shadow-md: 0 4px 12px hsla(221,35%,10%,0.08);
+  --shadow-lg: 0 8px 24px hsla(221,35%,10%,0.12);
+  --shadow-xl: 0 16px 40px hsla(221,35%,10%,0.16);
+
+  /* 圆角 */
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 20px;
+
+  /* 缓动 */
+  --ease-out-expo: cubic-bezier(0.22,1,0.36,1);
+  --ease-out-back: cubic-bezier(0.34,1.56,0.64,1);
+}
